@@ -1,26 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import NavBlock from './containers/NavBlock';
+import Slider from './components/Slider';
+import { Box } from '@mui/system';
+import { makeStyles } from '@mui/styles';
+import theme from './theme/theme';
 
-function App() {
+// import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+  container: {
+    width: '100%',
+    padding: '0 1.25rem',
+    [theme.breakpoints.up('tablet')]: {
+      width: '61.5rem',
+      padding: 0,
+      margin: '0 auto',
+    },
+    [theme.breakpoints.up('lg')]: {
+      width: '75rem',
+    },
+  }
+});
+
+const App: React.FC = () => {
+  const classes = useStyles();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+  <div>
+    <NavBlock />
+    <Box className={classes.container} component="div">
+        <Slider />
+    </Box>
+  </div>
+)
+};
 
 export default App;
