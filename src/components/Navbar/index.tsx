@@ -1,20 +1,20 @@
 import React from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Button from '@material-ui/core/Button';
-import Link from '@material-ui/core/Link';
+import { createStyles, makeStyles } from '@mui/styles';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Button from '@mui/material/Button';
+import Link from '@mui/material/Link';
 // import Typography from '@material-ui/core/Typography';
 // import MenuElem from './MenuElem';
-import logo from './../../assets/images/logo-brp.svg';
+import logo from '../../assets/images/logo-brp.svg';
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
       flexGrow: 1,
     },
     menuButton: {
-      marginRight: theme.spacing(2),
+      marginRight: '1rem',
     },
     title: {
       flexGrow: 1,
@@ -24,9 +24,9 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     logo: {
       maxWidth: 40,
-      marginRight: '10px'
-    }
-  }),
+      marginRight: '10px',
+    },
+  })
 );
 // const AtvElements: string[] = [
 //   'Side-By-Side',
@@ -43,15 +43,15 @@ const useStyles = makeStyles((theme: Theme) =>
 //   'Jet ski berths'
 // ]
 
-const Navbar:React.FC = () => {
+const Navbar: React.FC = () => {
   const classes = useStyles();
   const logoClickHandler = (event: React.SyntheticEvent) => {
     event.preventDefault();
-  }
- 
+  };
+
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position='static'>
         <Toolbar>
           {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
@@ -72,15 +72,18 @@ const Navbar:React.FC = () => {
           <MenuElem title={'Jet skis'} elementsMenu={JetSkisElements} />
 
            */}
-          <Link href="#" onClick={logoClickHandler} className={classes.linkLogo}>
-            <img src={logo} alt="logo" className={classes.logo} />
+          <Link
+            href='#'
+            onClick={logoClickHandler}
+            className={classes.linkLogo}
+          >
+            <img src={logo} alt='logo' className={classes.logo} />
           </Link>
 
-          <Button color="inherit">Login</Button>
-
+          <Button color='inherit'>Login</Button>
         </Toolbar>
       </AppBar>
     </div>
   );
-}
+};
 export default Navbar;

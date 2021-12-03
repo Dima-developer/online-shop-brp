@@ -1,16 +1,17 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
+import { makeStyles } from '@mui/styles';
+import Drawer from '@mui/material/Drawer';
+import List from '@mui/material/List';
+import Divider from '@mui/material/Divider';
+import ListItem from '@mui/material/ListItem';
 // import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Link from '@material-ui/core/Link';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import FavoriteTwoToneIcon from '@material-ui/icons/FavoriteTwoTone';
-import CompareTwoToneIcon from '@material-ui/icons/CompareTwoTone';
+import ListItemText from '@mui/material/ListItemText';
+import Link from '@mui/material/Link';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import FavoriteTwoToneIcon from '@mui/icons-material/FavoriteTwoTone';
+import CompareTwoToneIcon from '@mui/icons-material/CompareTwoTone';
+import theme from '../../theme/theme';
 
 const useStyles = makeStyles({
   panel: {
@@ -27,10 +28,9 @@ const useStyles = makeStyles({
     fontSize: 16,
     fontWeight: 600,
     lineHeight: '40px',
-    color: '#212121',
   },
   divideLine: {
-    margin: 'auto 10px',
+    margin: 'auto 10px'
   },
   iconHeart: {
     display: 'inline-block',
@@ -52,30 +52,28 @@ const useStyles = makeStyles({
   },
 });
 
-
-const NavPanel:React.FC = () => {
+const NavPanel: React.FC = () => {
   const classes = useStyles();
 
   const [sidebar, setSidebar] = React.useState<boolean>(false);
 
-  const toggleDrawer = (open: boolean) => (
-    event: React.KeyboardEvent | React.MouseEvent,
-  ) => {
-    if (
-      event.type === 'keydown' &&
-      ((event as React.KeyboardEvent).key === 'Tab' ||
-        (event as React.KeyboardEvent).key === 'Shift')
-    ) {
-      return;
-    }
+  const toggleDrawer =
+    (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
+      if (
+        event.type === 'keydown' &&
+        ((event as React.KeyboardEvent).key === 'Tab' ||
+          (event as React.KeyboardEvent).key === 'Shift')
+      ) {
+        return;
+      }
 
-    setSidebar(open);
-  };
+      setSidebar(open);
+    };
 
   const list = (anchor: string) => (
     <div
       className={classes.list}
-      role="presentation"
+      role='presentation'
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
     >
@@ -87,9 +85,7 @@ const NavPanel:React.FC = () => {
           </ListItem>
         ))} */}
         <ListItem>
-            <ListItemText>
-                Compared products
-            </ListItemText>
+          <ListItemText>Compared products</ListItemText>
         </ListItem>
       </List>
       <Divider />
@@ -99,36 +95,51 @@ const NavPanel:React.FC = () => {
             <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
-        ))} */} 
-        <ListItemText primary="Product" />
+        ))} */}
+        <ListItemText primary='Product' />
       </List>
     </div>
   );
 
   return (
     <Grid container className={classes.panel}>
-       <Box className={classes.panelNav}>
-        <Box className={classes.panelText}>
-          <Link href="#"  underline="none" color="secondary">About</Link>
-          <Box className={classes.divideLine} component="span"> | </Box>
-          <Link href="#" underline="none" color="secondary">FAQ</Link>
-          <Box className={classes.divideLine} component="span"> | </Box>
-          <Link href="#" underline="none" color="secondary">Contact</Link>
-        </Box>
-        <Box className={classes.panelText}> 
-          <Link href="#" underline="none" color="secondary" onClick={toggleDrawer(true)}>
-            Wishlist <FavoriteTwoToneIcon className={classes.iconHeart}/>
-            </Link>
-          <Box className={classes.divideLine} component="span">|</Box>
-          <Link href="#" underline="none" color="secondary">
-             Compare <CompareTwoToneIcon className={classes.iconCompare}/>
+      <Box className={classes.panelNav}>
+        <Box component="div" className={classes.panelText}>
+          <Link href='#' underline='none' color={theme.navigation.main}>
+            About
           </Link>
-       </Box>
+          <Box className={classes.divideLine} component='span'>
+          </Box>
+          <Link href='#' underline='none' color={theme.navigation.main}>
+            FAQ
+          </Link>
+          <Box className={classes.divideLine} component='span'>
+          </Box>
+          <Link href='#' underline='none' color={theme.navigation.main}>
+            Contact
+          </Link>
+        </Box>
+        <Box className={classes.panelText}>
+          <Link
+            href='#'
+            underline='none'
+            color={theme.navigation.main}
+            onClick={toggleDrawer(true)}
+          >
+            Wishlist <FavoriteTwoToneIcon className={classes.iconHeart} />
+          </Link>
+          <Box className={classes.divideLine} component='span'>
+            |
+          </Box>
+          <Link href='#' underline='none' color={theme.navigation.main}>
+            Compare <CompareTwoToneIcon className={classes.iconCompare} />
+          </Link>
+        </Box>
       </Box>
-            
-            <Drawer anchor='right' open={sidebar} onClose={toggleDrawer(false)}>
-                {list('right')}
-            </Drawer>
+
+      <Drawer anchor='right' open={sidebar} onClose={toggleDrawer(false)}>
+        {list('right')}
+      </Drawer>
 
       {/* {(['left', 'right', 'top', 'bottom'] as Anchor[]).map((anchor) => (
         <React.Fragment key={anchor}>
@@ -140,5 +151,5 @@ const NavPanel:React.FC = () => {
       ))} */}
     </Grid>
   );
-}
+};
 export default NavPanel;
