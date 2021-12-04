@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { makeStyles } from '@mui/styles';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
@@ -29,8 +30,11 @@ const useStyles = makeStyles({
     fontWeight: 600,
     lineHeight: '40px',
   },
+  panelLinks: {
+    color: theme.navigation.main,
+  },
   divideLine: {
-    margin: 'auto 10px'
+    margin: 'auto 10px',
   },
   iconHeart: {
     display: 'inline-block',
@@ -104,22 +108,32 @@ const NavPanel: React.FC = () => {
   return (
     <Grid container className={classes.panel}>
       <Box className={classes.panelNav}>
-        <Box component="div" className={classes.panelText}>
-          <Link href='#' underline='none' color={theme.navigation.main}>
+        <Box component='div' className={classes.panelText}>
+          <NavLink
+            style={{ textDecoration: 'none' }}
+            to='/about'
+            className={classes.panelLinks}
+          >
             About
-          </Link>
-          <Box className={classes.divideLine} component='span'>
-          </Box>
-          <Link href='#' underline='none' color={theme.navigation.main}>
+          </NavLink>
+          <Box className={classes.divideLine} component='span'></Box>
+          <NavLink
+            style={{ textDecoration: 'none' }}
+            to='/faq'
+            className={classes.panelLinks}
+          >
             FAQ
-          </Link>
-          <Box className={classes.divideLine} component='span'>
-          </Box>
-          <Link href='#' underline='none' color={theme.navigation.main}>
+          </NavLink>
+          <Box className={classes.divideLine} component='span'></Box>
+          <NavLink
+            style={{ textDecoration: 'none' }}
+            to='/contact'
+            className={classes.panelLinks}
+          >
             Contact
-          </Link>
+          </NavLink>
         </Box>
-        <Box className={classes.panelText}>
+        <Box component='div' className={classes.panelText}>
           <Link
             href='#'
             underline='none'
@@ -131,9 +145,13 @@ const NavPanel: React.FC = () => {
           <Box className={classes.divideLine} component='span'>
             |
           </Box>
-          <Link href='#' underline='none' color={theme.navigation.main}>
+          <NavLink
+            to='compare'
+            style={{ textDecoration: 'none' }}
+            className={classes.panelLinks}
+          >
             Compare <CompareTwoToneIcon className={classes.iconCompare} />
-          </Link>
+          </NavLink>
         </Box>
       </Box>
 

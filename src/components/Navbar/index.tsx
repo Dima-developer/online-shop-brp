@@ -1,11 +1,9 @@
 import React from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { createStyles, makeStyles } from '@mui/styles';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
-import Link from '@mui/material/Link';
-// import Typography from '@material-ui/core/Typography';
-// import MenuElem from './MenuElem';
 import logo from '../../assets/images/logo-brp.svg';
 
 const useStyles = makeStyles((theme) =>
@@ -45,42 +43,23 @@ const useStyles = makeStyles((theme) =>
 
 const Navbar: React.FC = () => {
   const classes = useStyles();
-  const logoClickHandler = (event: React.SyntheticEvent) => {
-    event.preventDefault();
+  const navigate = useNavigate();
+
+  const handleLoginRoute = () => {
+    navigate('/login');
   };
 
   return (
     <div className={classes.root}>
       <AppBar position='static'>
         <Toolbar>
-          {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton> */}
-          {/* <MenuElem title={'Can-Am Off-road'} elementsMenu={AtvElements} />
-          <Typography className={classes.root}>
-            <Link 
-                component="button"
-                variant="body2"
-                onClick={() => {
-                  console.log("Can-Am Off-road - Clicked");
-                }}
-            >
-                Can-Am On-road
-            </Link>
-          </Typography>
-          <MenuElem title={'Snowmobile'} elementsMenu={SnowmobileElements} />
-          <MenuElem title={'Jet skis'} elementsMenu={JetSkisElements} />
-
-           */}
-          <Link
-            href='#'
-            onClick={logoClickHandler}
-            className={classes.linkLogo}
-          >
+          <NavLink to='/' className={classes.linkLogo}>
             <img src={logo} alt='logo' className={classes.logo} />
-          </Link>
+          </NavLink>
 
-          <Button color='inherit'>Login</Button>
+          <Button color='inherit' onClick={handleLoginRoute}>
+            Login
+          </Button>
         </Toolbar>
       </AppBar>
     </div>
